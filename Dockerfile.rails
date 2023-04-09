@@ -11,5 +11,4 @@ RUN bundle install
 
 # copy source code and run server
 COPY toy_app/ .
-ENTRYPOINT ["lib/docker-entrypoint.sh"]
 EXPOSE 3000

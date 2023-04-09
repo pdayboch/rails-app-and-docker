@@ -7,7 +7,8 @@ services:
       dockerfile: Dockerfile.rails
     ports:
       - "3000:3000"
-    entrypoint: ["rails", "server", "-b", "0.0.0.0"]
+    entrypoint: ["lib/docker-entrypoint.sh"]
+    command: ["rails", "server", "-b", "0.0.0.0"]
 
   pgdb:
     image: "postgres:15.2-alpine"
