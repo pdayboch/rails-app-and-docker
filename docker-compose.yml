@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  toy_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.rails
+    ports:
+      - "3000:3000"
+    entrypoint: ["rails", "server", "-b", "0.0.0.0"]
+
+  pgdb:
+    image: "postgres:15.2-alpine"
+    volumes:
+      - "toy_app-pg:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: toyapp123
+
+volumes:
+  toy_app-pg:

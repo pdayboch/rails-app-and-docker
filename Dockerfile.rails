@@ -1,0 +1,15 @@
+# syntax=docker/dockerfile:1
+
+FROM ruby:3.1.2
+WORKDIR /opt/app
+
+# install dependencies
+RUN gem install rails -v 7.0.4
+RUN gem install bundler
+COPY toy_app/Gemfile ./
+RUN bundle install
+
+# copy source code and run server
+COPY toy_app/ .
+ENTRYPOINT ["lib/docker-entrypoint.sh"]
+EXPOSE 3000
